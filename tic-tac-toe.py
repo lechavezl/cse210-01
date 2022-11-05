@@ -19,7 +19,6 @@ def main():
     
     playing = True
     user_turn = 0
-    previous_user_turn = -1
 
     #Star a while loop until the game ends
     while playing:
