@@ -100,4 +100,5 @@ def three_row(number_spot):
     elif (number_spot[1] == number_spot[5] == number_spot[9]) or (number_spot[3] == number_spot[5] == number_spot[7]):
         return True
 
-main()
+if __name__ == '__main__':
+    main()
