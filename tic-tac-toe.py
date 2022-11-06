@@ -25,42 +25,38 @@ def main():
         #Display the board
         display_board(number_spot)
 
-        #Check if the turn if for Player X or Player O
-        if user_turn < 9: 
-            if (user_turn + 1) % 2 == 0:
-                print(f"\nPlayer O's turn")
-            else:
-                print("\nPlayer X's turn")
-
-        #This if statement avoid to show the input text when the game ends
+        #1. This if statement avoid to show the input text when the game ends
+        #2. Check if the turn if for Player X or Player O
+        #3. Ask the player to pick one square
         if user_turn < 9:
-            
-            #Ask the player to pick one spot
-            user_number = input("Please, pick one spot: ")
+            if (user_turn + 1) % 2 == 0:
+                user_number = input("\no's turn to choose a square (1-9): ")
+            else:
+                user_number = input("\nx's turn to choose a square (1-9): ")
             
             #Verify if the user typets and integer
             if user_number.isdigit() and int(user_number) in number_spot:
                 
                 #Check if the spot is not selected so the player can use it. If it is already selected,
                 #avoid to overwriting
-                if not number_spot[int(user_number)] in {"X", "O"}:
+                if not number_spot[int(user_number)] in {"x", "o"}:
                     user_turn += 1
                     number_spot[int(user_number)] = check_user_turn(user_turn)
 
                 #Check if the spot if already selected to avoit overwriting
-                elif number_spot[int(user_number)] in {"X", "O"}:
-                    print("Invalid spot selected, please try another")
+                elif number_spot[int(user_number)] in {"x", "o"}:
+                    print("Invalid square selected, please try another")
         
             #Check if the game ends because one player won
             if three_row(number_spot) == True:
                 display_board(number_spot)
-                print("\nThanks for playing!!!")
+                print("\nGoog game. Thanks for playing!")
                 playing = False
         
         #Ends the game if there is no winner, a tie
         else:
-            print("It's a tie, there is no winner")
-            print("\nThanks for playing!!!")
+            print("\nIt's a tie, there is no winner")
+            print("Good game. Thanks for playing!")
             playing = False
 
 
@@ -84,9 +80,9 @@ def check_user_turn(turn):
     #is player's 2 turn. If the remainder if not 0, then is
     #player's 1 turn
     if turn % 2 == 0:
-        return "O"
+        return "o"
     else:
-        return "X"
+        return "x"
 
 # This function will check if the game ends by a horizontal row, vertical rod, diagonal row or a tie.
 def three_row(number_spot):
